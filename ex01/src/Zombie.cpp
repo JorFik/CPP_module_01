@@ -6,7 +6,7 @@
 /*   By: JFikents <Jfikents@student.42Heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 15:35:54 by JFikents          #+#    #+#             */
-/*   Updated: 2024/08/23 12:57:23 by JFikents         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:41:48 by JFikents         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,23 @@ Zombie::Zombie(const Zombie &other)
 	this->name = other.name;
 }
 
-Zombie& Zombie::operator =(const Zombie& other)
+Zombie	&Zombie::operator =(const Zombie& other)
 {
 	this->name = other.name;
 	return (*this);
 }
 
-void Zombie::announce(void)
+void	Zombie::setName(std::string name)
+{
+	this->name = name;
+}
+
+void	Zombie::announce(void)
 {
 	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-void Zombie::randomChump(std::string name)
+void	Zombie::randomChump(std::string name)
 {
 	Zombie zombie = Zombie(name, false);
 	std::cout << this->name << " took a bite of " << name << ", " << std::flush;
@@ -64,10 +69,20 @@ void Zombie::randomChump(std::string name)
 	zombie.announce();
 }
 
-Zombie *Zombie::newZombie(std::string name)
+Zombie	*Zombie::newZombie(std::string name)
 {
 	Zombie *zombie = new Zombie(name, true);
 	std::cout << this->name << " reached " << name << ", " << std::flush;
 	std::cout << name << " is now a Zombie." << std::endl;
 	return (zombie);
+}
+
+Zombie *Zombie::zombieHorde(int N, std::string name)
+{
+	Zombie	*horde = new Zombie[N];
+
+	std::cout << this->name << " enter a convention of " << name << ", turning " << N << " of them into Zombies." << std::endl;
+	for (int i = 0; i < N; i++)
+		horde[i].setName(name + " " + std::to_string(i + 1));
+	return (horde);
 }
