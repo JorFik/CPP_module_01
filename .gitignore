@@ -4,6 +4,9 @@ en.subject.pdf
 # Object files
 *.o
 
+# Test files
+*.replace
+
 # Executables
 BraiiiiiiinnnzzzZ
 Moar_brainz
